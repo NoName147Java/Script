@@ -160,7 +160,7 @@ currentVersion = "6.4.2"
 -- KeepIY: after a rejoin/teleport, reload THIS custom build (new UI) instead of the stock
 -- Infinite Yield from GitHub (old UI). Set KEEP_SOURCE_URL to the raw link of this file,
 -- or save this file in your executor workspace at KEEP_SOURCE_FILE.
-KEEP_SOURCE_URL = ""
+KEEP_SOURCE_URL = "https://raw.githubusercontent.com/NoName147Java/Script/refs/heads/main/inf_yield_popup%20(2).lua"
 KEEP_SOURCE_FILE = "infiniteyield/custom_ui.lua"
 
 ScaledHolder = Instance.new("Frame")
