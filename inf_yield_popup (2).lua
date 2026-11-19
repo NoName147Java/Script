@@ -372,15 +372,29 @@ PanelStroke.Color = Color3.fromRGB(78, 78, 79)
 PanelStroke.Thickness = 1
 PanelStroke.Parent = Holder
 
--- Rounded corners
+-- Rounded corners (applied to the whole UI, including dialogs created at runtime)
 function iyCorner(gui, radius)
-	local corner = Instance.new("UICorner")
-	corner.Name = randomString()
+	local corner = gui:FindFirstChildOfClass("UICorner")
+	if not corner then
+		corner = Instance.new("UICorner")
+		corner.Name = randomString()
+		corner.Parent = gui
+	end
 	corner.CornerRadius = UDim.new(0, radius)
-	corner.Parent = gui
 	return corner
 end
+function iyRoundAll(gui)
+	if not gui:IsA("GuiObject") or gui:FindFirstChildOfClass("UICorner") then return end
+	local size = gui.Size
+	local radius = 6
+	if size.X.Offset > 0 and size.Y.Offset > 0 and math.min(size.X.Offset, size.Y.Offset) <= 24 then
+		radius = 4
+	end
+	iyCorner(gui, radius)
+end
 iyCorner(Holder, 10)
+for _, v in ScaledHolder:GetDescendants() do iyRoundAll(v) end
+ScaledHolder.DescendantAdded:Connect(iyRoundAll)
 
 Title.Name = "Title"
 Title.Parent = Holder
